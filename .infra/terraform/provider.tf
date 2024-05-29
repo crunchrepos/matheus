@@ -13,7 +13,9 @@ provider "aws" {
   default_tags {
     tags = {
       Environment = var.environment
-      Name        = "crunch"
+      Project     = "Crunch"
+      Team        = "MatFor"
+      Repository  = "https://github.com/vshxp/challenge-crunch"
     }
   }
 }
