@@ -1,0 +1,95 @@
+---
+name: Pipeline
+
+env:
+  AWS_REGION: us-east-1
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+
+  ga_environment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: 'Set GA environment variables'
+    steps:
+      - name: 'Set variables'
+        uses: iamtheyammer/branch-env-vars@v1.2.1
+        id: branch_check
+        with:
+          bevOverwrite: true
+          ENVIRONMENT: |
+            develop:dev
+            main:prod
+
+
+    outputs:
+      TF_WORKSPACE: ${{ env.ENVIRONMENT }}
+
+  terraform:
+    name: Terraform workflow
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        shell: bash
+        working-directory: ".infra/terraform"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract branch name
+        shell: bash
+        id: extract_branch
+        run: |
+          echo branch="$(git branch --show-current)" >> $GITHUB_OUTPUT
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.4.5"
+
+      - name: Setup Terragrunt v0.45.4
+        run: |
+          sudo wget -q -O /bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/v0.45.4/terragrunt_linux_amd64"
+          sudo chmod +x /bin/terragrunt
+          terragrunt -v
+      
+      - name: Set branch-based environment variables
+        uses: iamtheyammer/branch-env-vars@v1.2.2
+        with:
+          bevOverwrite: true
+          AWS_ACCESS_KEY: |
+            develop:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+            main:${{ secrets.AWS_ACCESS_KEY_ID_PLATFORM_PROD }}
+            !default:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          AWS_SECRET_ACCESS_KEY: |
+            develop:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+            main:${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+            !default:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Terraform Init
+        shell: bash
+        env:
+          TF_WORKSPACE: ${{ env.TF_WORKSPACE }}
+        run: terragrunt init
+  
+      - name: Terraform Validate
+        run: terragrunt validate
+  
+      - name: Terraform Plan
+        run: terragrunt plan -out=tfplan -var-file="./tfvars/${{ steps.extract_branch.outputs.branch }}.tfvars"
+  
+      - name: Terraform Apply
+        run: terragrunt apply -auto-approve tfplan -var-file="./tfvars/${{ steps.extract_branch.outputs.branch }}.tfvars"
+        

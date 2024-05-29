@@ -1,0 +1,8 @@
+*.tfplan
+**/backend.tf
+**/*.tfstate
+.terraform*
+terraform.tfstate.d
+.idea
+
+.env
