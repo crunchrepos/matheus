@@ -1,5 +1,3 @@
-# Workflow created to avoid accidental keep resources running in AWS
-
 ---
 name: Terraform Destroy 
 
@@ -13,11 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Notify branch deletion
-      run: echo "Branch '${{ github.event.ref }}' has been deleted."
+      - name: Notify branch deletion
+        run: echo "Branch '${{ github.event.ref }}' has been deleted."
+
+      - name: Dump GitHub event context
+        run: echo "${{ toJson(github.event) }}"
 
   terraform:
     name: Destroy
@@ -51,6 +52,7 @@ jobs:
             !default:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           AWS_SECRET_ACCESS_KEY: |
             develop:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+            main:${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
             !default:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
           ENVIRONMENT: |
             develop:dev
@@ -76,5 +78,3 @@ jobs:
   
       - name: Terraform Destroy
         run: terragrunt run-all destroy --terragrunt-non-interactive --auto-approve
-  
-        
