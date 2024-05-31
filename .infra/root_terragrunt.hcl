@@ -1,7 +1,8 @@
 terraform_version_constraint = "1.8.4"
 
 locals {
-  aws_region                   = "us-east-1"
+  aws_region_failover          = "us-east-1"
+  aws_region                   = get_env("AWS_REGION", local.aws_region_failover)
   environment_failover         = "dev"
   environment                  = get_env("ENVIRONMENT", local.environment_failover)
   state_file_bucket_name       = "state.terraform.${local.environment}.challenge.matfor.${local.aws_region}"

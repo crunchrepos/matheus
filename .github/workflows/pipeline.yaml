@@ -1,7 +1,6 @@
 ---
 name: Pipeline
 
-
 on:
   push:
     branches:
@@ -70,6 +69,10 @@ jobs:
             develop:dev
             main:prod
             !default:dev
+          AWS_REGION: |
+            develop:us-east-1
+            main:us-east-2
+            !default:us-east-1
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4.0.2
