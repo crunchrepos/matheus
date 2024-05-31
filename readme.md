@@ -1,7 +1,6 @@
 # Crunch Challenge
 
-## Task description:
-
+[Task Description](./task_description.md)
 
 # Setup
 ## Github Repository Configuration
@@ -15,13 +14,13 @@
     | AWS_ACCESS_KEY_ID_PROD | PRODUCTION | YES |
     | AWS_ACCESS_KEY_ID_PLATFORM_PROD | PRODUCTION | YES |
 
-2. Fill the files `tfvars/develop.tfvars` and `tfvars/main.tfvars` according to the values for each environment.
+2. Fill the files `tfvars/dev.tfvars` and `tfvars/prod.tfvars` according to the values for each environment.
 
 3. After the push to the branch, the pipeline will deploy the resources.
 
 ## GitFlow
 ![](./docs/terraform-pipeline.png)
-> **Note:**  Only `dev` and `main` branches deploy to AWS.
+> **Note:**  Only `develop` and `main` branches deploy to AWS.
 
 
 # Solution
