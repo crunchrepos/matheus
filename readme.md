@@ -35,3 +35,6 @@
 ### Architecture
 ### CI/CD Steps
 ### Monitoring and Alarms
+
+# FAQ
+[Frequent Asked Questions](faq.md)

@@ -17,9 +17,6 @@ jobs:
       - name: Notify branch deletion
         run: echo "Branch '${{ github.event.ref }}' has been deleted."
 
-      - name: Dump GitHub event context
-        run: echo "${{ toJson(github.event) }}"
-
   terraform:
     name: Destroy
     runs-on: ubuntu-22.04
