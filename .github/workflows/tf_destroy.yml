@@ -74,10 +74,7 @@ jobs:
           TF_WORKSPACE: ${{ env.ENVIRONMENT }}
         run: terragrunt init
   
-      - name: Terraform Validate
-        run: terragrunt validate
-  
-      - name: Terraform Plan
+      - name: Terraform Destroy
         run: terragrunt run-all destroy --terragrunt-non-interactive --auto-approve
   
         
