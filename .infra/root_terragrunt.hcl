@@ -1,4 +1,4 @@
-terraform_version_constraint = "1.4.2"
+terraform_version_constraint = "1.8.4"
 
 locals {
   aws_region                   = "us-east-1"
