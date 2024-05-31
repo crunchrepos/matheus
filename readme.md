@@ -14,6 +14,18 @@
     | AWS_ACCESS_KEY_ID_PROD | PRODUCTION | YES |
     | AWS_ACCESS_KEY_ID_PLATFORM_PROD | PRODUCTION | YES |
 
+2. Create the SSM Parameters that will be used by Database
+
+Replace these values with your actual username and password
+
+> **Note:** you must create the ssm entry manualy.
+
+```
+export DB_PASSWORD="my-db-password"
+
+aws ssm put-parameter --name "/$ENVIRONMENT/crunch/db/password" --value "$DB_PASSWORD" --type "SecureString" --overwrite
+```
+
 2. Fill the files `tfvars/dev.tfvars` and `tfvars/prod.tfvars` according to the values for each environment.
 
 3. After the push to the branch, the pipeline will deploy the resources.
@@ -34,6 +46,12 @@
 ### Architecture
 ### CI/CD Steps
 ### Monitoring and Alarms
+
+
+# Official AWS Modules Used
+[VPC](https://github.com/terraform-aws-modules/terraform-aws-vpc)
+[RDS](https://github.com/terraform-aws-modules/terraform-aws-rds)
+[ECS](https://github.com/terraform-aws-modules/terraform-aws-ecs)
 
 # FAQ
 [Frequent Asked Questions](faq.md)
