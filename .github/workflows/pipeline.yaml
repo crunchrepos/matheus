@@ -72,5 +72,5 @@ jobs:
         run: terragrunt plan -out=tfplan -var-file="./tfvars/${{ env.ENVIRONMENT }}.tfvars"
   
       - name: Terraform Apply
-        run: terragrunt apply -auto-approve tfplan -var-file="./tfvars/${{ env.ENVIRONMENT }}.tfvars"
+        run: terragrunt apply -auto-approve tfplan
         
