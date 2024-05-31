@@ -47,20 +47,16 @@ jobs:
         with:
           bevOverwrite: true
           AWS_ACCESS_KEY: |
-            develop:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
-            main:${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+            main:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
             !default:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           AWS_SECRET_ACCESS_KEY: |
-            develop:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
-            main:${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+            main:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
             !default:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
           ENVIRONMENT: |
-            develop:dev
-            main:prod
+            main:dev
             !default:dev
           AWS_REGION: |
-            develop:us-east-1
-            main:us-east-2
+            main:us-east-1
             !default:us-east-1
 
       - name: Configure AWS credentials
