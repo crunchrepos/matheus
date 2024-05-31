@@ -9,22 +9,6 @@ on:
 
 jobs:
 
-  ga_environment:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    name: 'Set Github env vars'
-    steps:
-      - name: 'Set variables'
-        uses: iamtheyammer/branch-env-vars@v1.2.1
-        id: branch_check
-        with:
-          bevOverwrite: true
-          ENVIRONMENT: |
-            develop:dev
-            main:prod
-    outputs:
-      TF_WORKSPACE: ${{ env.ENVIRONMENT }}
-
   terraform:
     name: Terraform workflow
     runs-on: ubuntu-22.04
@@ -35,12 +19,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Extract branch name
-        shell: bash
-        id: extract_branch
-        run: |
-          echo branch="$(git branch --show-current)" >> $GITHUB_OUTPUT
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -84,15 +62,15 @@ jobs:
       - name: Terraform Init
         shell: bash
         env:
-          TF_WORKSPACE: ${{ env.TF_WORKSPACE }}
+          TF_WORKSPACE: ${{ env.ENVIRONMENT }}
         run: terragrunt init
   
       - name: Terraform Validate
         run: terragrunt validate
   
       - name: Terraform Plan
-        run: terragrunt plan -out=tfplan -var-file="./tfvars/${{ steps.extract_branch.outputs.branch }}.tfvars"
+        run: terragrunt plan -out=tfplan -var-file="./tfvars/${{ env.ENVIRONMENT }}.tfvars"
   
       - name: Terraform Apply
-        run: terragrunt apply -auto-approve tfplan -var-file="./tfvars/${{ steps.extract_branch.outputs.branch }}.tfvars"
+        run: terragrunt apply -auto-approve tfplan -var-file="./tfvars/${{ env.ENVIRONMENT }}.tfvars"
         
