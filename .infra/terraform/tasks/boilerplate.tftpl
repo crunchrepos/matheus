@@ -1,0 +1,65 @@
+[
+  {
+    "name": "${app_name}",
+    "image": "${app_image}",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": ${app_port},
+        "hostPort": ${app_port}
+      }
+    ],
+    "cpu": ${api_cpu},
+    "memory": ${api_memory},
+    "networkMode": "awsvpc",
+    "ulimits": [
+      {
+        "name": "nofile",
+        "softLimit": 1000000,
+        "hardLimit": 1000000
+      }
+    ],
+    "environment": [
+      {
+        "name": "PORT",
+        "value": "${app_port}"
+      },
+      {
+        "name": "PG_HOST",
+        "value": "${db_hostname}"
+      },
+      {
+        "name": "PG_PORT",
+        "value": "${db_port}"
+      },
+      {
+        "name": "POSTGRES_USER",
+        "value": "${db_username}"
+      },
+      {
+        "name": "POSTGRES_PASSWORD",
+        "value": "${db_password}"
+      },
+      {
+        "name": "POSTGRES_DB",
+        "value": "${db_database_name}"
+      },
+      {
+        "name": "JWT_SECRET",
+        "value": "${jwt_secret}"
+      },
+      {
+        "name": "JWT_EXPIRATION",
+        "value": "${jwt_expiration}"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${aws_region}",
+        "awslogs-stream-prefix": "crunch"
+      }
+    }
+  }
+]

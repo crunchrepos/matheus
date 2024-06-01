@@ -2,24 +2,26 @@
 # FAQ
 
 ## How to destroy the PROD environment
+> *Note:* Make sure that the folder `.terraform` and the files `.terraform.lock.hcl` and `backend.tf` does not exists. (IF THEY EXISTS DELETE!) 
 
-Para destruir o ambiente de producao (branch main) é necessário:
-1. Setar a variavel de ambiente ENVIRONMENT para prod
+To destroy the production environment (branch main) you need to:
+1. Set localy the environment variable `ENVIRONMENT` to prod
 ```
 export ENVIRONMENT=prod
 ```
 
-2. Setar a variavel de ambiente AWS_REGION para us-east-2
+2. Set the localy the environment variable `AWS_REGION` to us-east-2
 ```
 export AWS_REGION=us-east-2
 ```
 
-3. entrar na pasta do arquivo root_terragrunt.hcl, iniciar o backend 
+3. Enter the root_terragrunt.hcl folder, start the backend 
 ```
 cd .infra
+terragrunt run-all init
 ```
 
-4. executar o comando terragrunt para destruir o ambiente
+4. Run the terragrunt command to destroy the environment
 ```
 terragrunt run-all destroy
 ```
