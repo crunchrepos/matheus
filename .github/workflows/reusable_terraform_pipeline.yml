@@ -7,6 +7,10 @@ on:
       branch:
         required: true
         type: string
+      aws-ecr-repository-name:
+        required: true
+        type: string
+    secrets:
       aws-access-key-id-dev:
         required: true
         type: secret
@@ -19,9 +23,7 @@ on:
       aws-secret-access-key-prod:
         required: true
         type: secret
-      aws-ecr-repository-name:
-        required: true
-        type: string
+
 
 jobs:
   terraform:
