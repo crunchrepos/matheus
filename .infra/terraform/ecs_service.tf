@@ -3,7 +3,8 @@ resource "aws_ecs_service" "boilerplate" {
   cluster         = aws_ecs_cluster.default.id
   desired_count   = var.app_count_boilerplate
   launch_type     = "FARGATE"
-  task_definition = "${var.app_name}-${var.environment}"
+  task_definition = aws_ecs_task_definition.ecs_tasks.arn
+  force_new_deployment = true
 
   network_configuration {
     security_groups = [aws_security_group.ecs_tasks.id]
@@ -12,7 +13,7 @@ resource "aws_ecs_service" "boilerplate" {
 
   load_balancer {
     target_group_arn = aws_alb_target_group.boilerplate.arn
-    container_name   = "${var.app_name}-${var.environment}"
+    container_name   = var.app_name
     container_port   = var.app_port
   }
 
@@ -34,3 +35,5 @@ resource "aws_ecs_service" "boilerplate" {
 
   depends_on = [aws_ecs_task_definition.ecs_tasks, aws_alb_listener.public_listener]
 }
+
+
