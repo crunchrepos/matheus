@@ -19,11 +19,14 @@
 Replace these values with your actual username and password
 
 > **Note:** you must create the ssm entry manualy.
-
+> For practical purposes only I'm using the same values recomended by the boilerplate repository
 ```
-export DB_PASSWORD="my-db-password"
+export DB_PASSWORD="white"
+export JWT_SECRET="dfdhhf8gh523reh6qedn37dferpoawdn381j"
 
 aws ssm put-parameter --name "/$ENVIRONMENT/crunch/db/password" --value "$DB_PASSWORD" --type "SecureString" --overwrite
+aws ssm put-parameter --name "/$ENVIRONMENT/crunch/app/jwt_secret" --value "$JWT_SECRET" --type "SecureString" --overwrite
+
 ```
 
 2. Fill the files `tfvars/dev.tfvars` and `tfvars/prod.tfvars` according to the values for each environment.
@@ -49,9 +52,8 @@ aws ssm put-parameter --name "/$ENVIRONMENT/crunch/db/password" --value "$DB_PAS
 
 
 # Official AWS Modules Used
-[VPC](https://github.com/terraform-aws-modules/terraform-aws-vpc)
-[RDS](https://github.com/terraform-aws-modules/terraform-aws-rds)
-[ECS](https://github.com/terraform-aws-modules/terraform-aws-ecs)
+- [VPC](https://github.com/terraform-aws-modules/terraform-aws-vpc)
+- [RDS](https://github.com/terraform-aws-modules/terraform-aws-rds)
 
 # FAQ
 [Frequent Asked Questions](faq.md)

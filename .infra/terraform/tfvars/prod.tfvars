@@ -23,6 +23,7 @@ db_monitoring_interval        = 60
 db_monitoring_role_name       = "rds-monitoring-role"
 db_enable_deletion_protection = false
 db_family                     = "postgres16"
+ecr_allow_force_delete        = true
 tags = {
   Terraform   = "true"
   Environment = "prod"

@@ -7,9 +7,9 @@ Senior DevOps Engineer
 Use either Terraform or AWS CloudFormation to create and
 manage the necessary AWS cloud infrastructure. This should include, but not be
 limited to:
-- EC2 instances or ECS/EKS for container orchestration.
-- RDS or Aurora for the PostgreSQL database.
-- VPC, Subnets, and Internet Gateway for network configuration.
+-  EC2 instances or ECS/EKS for container orchestration.
+- [ x ] RDS or Aurora for the PostgreSQL database.
+- [ x ] VPC, Subnets, and Internet Gateway for network configuration.
 - Load Balancers (ALB) for distributing incoming application tra\ic.
 - Auto Scaling to handle changes in load.
 
@@ -19,9 +19,8 @@ that the Docker setup is optimized for a production environment.
 -  Provide a Dockerfile to build the application container.
 
 ### CI/CD Pipeline: 
-Set up a CI/CD pipeline using AWS CodePipeline, GitHub Actions,
-or any other CI/CD tool to automate the testing and deployment of the application.
--  The pipeline should build the Docker container.
+Set up a CI/CD pipeline using AWS CodePipeline, GitHub Actions, or any other CI/CD tool to automate the testing and deployment of the application.
+- The pipeline should build the Docker container.
 - Run tests to ensure the build is stable.
 - Deploy the container to AWS ECS or EKS
 

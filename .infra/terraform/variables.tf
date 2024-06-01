@@ -126,3 +126,75 @@ variable "db_password_parameter" {
   description = "The SSM parameter name for the database password"
   type        = string
 }
+
+
+# ------------> ECS <------------
+
+variable "ecs_cluster_name" {
+  description = "The name of the ECS cluster"
+  type        = string
+}
+
+variable "ecs_autoscaling_min_size" {
+  description = "The minimum size of the ECS autoscaling group"
+  type        = number
+}
+
+variable "ecs_autoscaling_max_size" {
+  description = "The maximum size of the ECS autoscaling group"
+  type        = number
+}
+
+
+variable "ecr_allow_force_delete" {
+  description = "Allow force deletion of the ECR repository"
+  type        = bool
+}
+# ------------> ECS SERVICE <------------
+variable "app_count_boilerplate" {
+  description = "The number of instances to run"
+  type        = string  
+}
+
+# ------------> APPLICATION <------------
+variable "app_name" {
+  description = "The name of the application"
+  type        = string
+}
+
+variable "app_port" {
+  description = "The port of the application"
+  type        = string
+}
+
+variable "health_check_path" {
+  description = "The path for the health check"
+  type        = string
+  default     = "/"
+}
+
+variable "app_container_cpu" {
+  description = "The CPU for the application container"
+  type        = string  
+}
+
+variable "app_container_memory" {
+  description = "The memory for the application container"
+  type        = string
+}
+
+variable "app_jwt_expiration" {
+  description = "value of the jwt expiration"
+  type        = string
+}
+
+# ------------> ECS TASK DEFINITION <------------
+variable "ecs_fargate_cpu" {
+  description = "The CPU for the ECS task definition"
+  type        = string
+}
+
+variable "ecs_fargate_memory" {
+  description = "The memory for the ECS task definition"
+  type        = string
+}
