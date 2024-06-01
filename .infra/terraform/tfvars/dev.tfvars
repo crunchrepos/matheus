@@ -7,9 +7,7 @@ vpc_public_subnets            = ["10.0.1.0/24", "10.0.2.0/24"]
 vpc_private_subnets           = ["10.0.101.0/24", "10.0.102.0/24"]
 vpc_database_subnets          = ["10.0.201.0/24", "10.0.202.0/24"]
 vpc_enable_nat_gateway        = true
-
-db_username                    = "white"
-db_password_parameter         = "/dev/crunch/db/password"
+db_username                   = "white"
 db_instance_class             = "db.t4g.micro"
 db_engine_version             = "16.2"
 db_engine                     = "postgres"

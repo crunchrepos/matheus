@@ -122,10 +122,7 @@ variable "db_username" {
 
 # ------------> SSM PARAMETERS <------------
 
-variable "db_password_parameter" {
-  description = "The SSM parameter name for the database password"
-  type        = string
-}
+
 
 
 # ------------> ECS <------------

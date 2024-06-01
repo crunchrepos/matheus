@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "db_password" {
-  name            = var.db_password_parameter
+  name            = "/${var.environment}/crunch/db/password"
   with_decryption = true
 }
 
