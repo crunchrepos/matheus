@@ -7,7 +7,7 @@ resource "aws_ecs_service" "boilerplate" {
 
   network_configuration {
     security_groups = [aws_security_group.ecs_tasks.id]
-    subnets         = module.vpc.private_subnets.ids
+    subnets         = module.vpc.private_subnets
   }
 
   load_balancer {
