@@ -10,18 +10,6 @@ on:
       aws-ecr-repository-name:
         required: true
         type: string
-      aws-access-key-id-dev:
-        required: true
-        type: secret
-      aws-secret-access-key-dev:
-        required: true
-        type: secret
-      aws-access-key-id-prod:
-        required: true
-        type: secret
-      aws-secret-access-key-prod:
-        required: true
-        type: secret
 
 
 jobs:
@@ -52,13 +40,13 @@ jobs:
         with:
           bevOverwrite: true
           AWS_ACCESS_KEY: |
-            develop:${{ inputs.aws-access-key-id-dev }}
-            main:${{ inputs.aws-access-key-id-prod }}
-            !default:${{ inputs.aws-access-key-id-dev }}
+            develop:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+            main:${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+            !default:${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           AWS_SECRET_ACCESS_KEY: |
-            develop:${{ inputs.aws-secret-access-key-dev }}
-            main:${{ inputs.aws-secret-access-key-prod }}
-            !default:${{ inputs.aws-secret-access-key-dev }}
+            develop:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+            main:${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+            !default:${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
           ENVIRONMENT: |
             develop:dev
             main:prod
