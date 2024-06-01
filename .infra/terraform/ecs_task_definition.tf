@@ -1,9 +1,7 @@
 # Data source to retrieve the latest image from ECR
 data "aws_ecr_image" "latest_image" {
-  repository_name = aws_ecr_repository.api.name
+  repository_name = data.aws_ecr_repository.api.name
   most_recent     = true
-
-  depends_on = [ aws_ecr_repository.api ]
 }
 
 resource "aws_ecs_task_definition" "ecs_tasks" {
