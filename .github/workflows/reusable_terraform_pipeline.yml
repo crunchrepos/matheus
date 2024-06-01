@@ -10,7 +10,6 @@ on:
       aws-ecr-repository-name:
         required: true
         type: string
-    secrets:
       aws-access-key-id-dev:
         required: true
         type: secret
