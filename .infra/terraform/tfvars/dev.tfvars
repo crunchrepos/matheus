@@ -33,5 +33,5 @@ ecs_autoscaling_max_size      = 3
 ecs_fargate_cpu               = 1024
 ecs_fargate_memory            = 2048  
 app_count_boilerplate         = 1
-app_container_cpu             = 256
-app_container_memory          = 256
+app_container_cpu             = 1024
+app_container_memory          = 2048
