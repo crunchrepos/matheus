@@ -8,7 +8,7 @@ on:
 
 jobs:
   call-reusable-workflow:
-    uses: ./.github/workflows/reusable_pipeline.yml
+    uses: ./.github/workflows/reusable_terraform_pipeline.yml
     with:
       branch: ${{ github.ref_name }}
       aws-access-key-id-dev: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
