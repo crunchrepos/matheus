@@ -10,8 +10,8 @@ jobs:
   call-reusable-workflow:
     uses: ./.github/workflows/reusable_terraform_pipeline.yml
     with:
-      branch: ${{ github.ref_name }}
       aws-ecr-repository-name: boilerplate-dev-api
+      branch: ${{ github.ref_name }}
     secrets:
       aws-access-key-id-dev: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
       aws-secret-access-key-dev: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
