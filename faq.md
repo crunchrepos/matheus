@@ -25,3 +25,10 @@ terragrunt run-all init
 ```
 terragrunt run-all destroy
 ```
+
+## How to delete the ECR
+```
+export ENVIRONMENT=dev
+export APP_NAME=boilerplate
+aws ecr delete-repository --repository-name $APP_NAME-$ENVIRONMENT-api --force 
+```

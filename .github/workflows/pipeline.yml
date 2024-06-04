@@ -8,7 +8,7 @@ on:
       - develop
 
 jobs:
-  call-reusable-workflow:
+  deploy:
     uses: ./.github/workflows/reusable_terraform_pipeline.yml
     with:
       aws-ecr-repository-name: boilerplate-dev-api
