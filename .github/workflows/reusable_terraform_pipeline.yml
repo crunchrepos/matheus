@@ -4,10 +4,10 @@ name: Reusable Terraform Pipeline
 on:
   workflow_call:
     inputs:
-      branch:
+      aws-ecr-repository-name:
         required: true
         type: string
-      aws-ecr-repository-name:
+      application_path:
         required: true
         type: string
 
@@ -74,11 +74,12 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ inputs.aws-ecr-repository-name }}
+          REPOSITORY: ${{ inputs.aws-ecr-repository-name }}-${{env.ENVIRONMENT}}
           IMAGE_TAG: ${{ github.sha }}
           NODE_ENV: ${{ env.NODE_ENV }}
+          APP_PATH: ${{ inputs.application_path }}
         run: |
-          cd ../../typeorm-express-typescript
+          cd $APP_PATH
             docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --build-arg NODE_ENV=${NODE_ENV} .
             docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
       
