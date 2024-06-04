@@ -11,6 +11,6 @@ jobs:
   deploy:
     uses: ./.github/workflows/reusable_terraform_pipeline.yml
     with:
-      aws-ecr-repository-name: boilerplate-dev-api
+      aws-ecr-repository-name: boilerplate-${{ github.ref_name }}-api
       branch: ${{ github.ref_name }}
     secrets: inherit
