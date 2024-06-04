@@ -14,7 +14,7 @@ module "rds_postgres_db" {
   port                         = var.db_postgres_port
   vpc_security_group_ids       = [aws_security_group.rds_sg.id]
   monitoring_interval          = var.db_monitoring_interval
-  monitoring_role_name         = var.db_monitoring_role_name
+  monitoring_role_name         = "${var.db_monitoring_role_name}-${var.environment}"
   create_monitoring_role       = true
   create_db_subnet_group       = true
   subnet_ids                   = module.vpc.database_subnets
