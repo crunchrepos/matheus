@@ -48,12 +48,6 @@ aws ecr create-repository --repository-name $APP_NAME-$ENVIRONMENT-api --image-t
 ![](./docs/architecture.png)
 
 
-## Explanation
-### Architecture
-### CI/CD Steps
-### Monitoring and Alarms
-
-
 # Official AWS Modules Used
 - [VPC](https://github.com/terraform-aws-modules/terraform-aws-vpc)
 - [RDS](https://github.com/terraform-aws-modules/terraform-aws-rds)
