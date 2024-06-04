@@ -7,22 +7,22 @@ Senior DevOps Engineer
 Use either Terraform or AWS CloudFormation to create and
 manage the necessary AWS cloud infrastructure. This should include, but not be
 limited to:
--  EC2 instances or ECS/EKS for container orchestration.
-- [ x ] RDS or Aurora for the PostgreSQL database.
-- [ x ] VPC, Subnets, and Internet Gateway for network configuration.
-- Load Balancers (ALB) for distributing incoming application tra\ic.
-- Auto Scaling to handle changes in load.
+  - [x] EC2 instances or ECS/EKS for container orchestration.
+  - [x] RDS or Aurora for the PostgreSQL database.
+  - [x] VPC, Subnets, and Internet Gateway for network configuration.
+  - [x] Load Balancers (ALB) for distributing incoming application traffic.
+  - [x] Auto Scaling to handle changes in load.
 
 ### Dockerization: 
 Containerize the given Node.js application using Docker. Ensure
 that the Docker setup is optimized for a production environment.
--  Provide a Dockerfile to build the application container.
+- [ ] Provide a Dockerfile to build the application container.
 
 ### CI/CD Pipeline: 
 Set up a CI/CD pipeline using AWS CodePipeline, GitHub Actions, or any other CI/CD tool to automate the testing and deployment of the application.
-- The pipeline should build the Docker container.
-- Run tests to ensure the build is stable.
-- Deploy the container to AWS ECS or EKS
+  - [x] The pipeline should build the Docker container.
+- [ ] Run tests to ensure the build is stable.
+- [ ] Deploy the container to AWS ECS or EKS
 
 ### Monitoring and Alarms: 
 Utilize AWS CloudWatch to set up monitoring and alarms.
@@ -52,7 +52,7 @@ Provide detailed documentation on the architecture and setup.
 
 ## Evaluation Criteria
 - Infrastructure as Code Quality: Clean, well-organized, and maintainable code for infrastructure setup.
-- CI/CD Implementation: E\iciency and reliability of the pipeline setup.
+- CI/CD Implementation: Eficiency and reliability of the pipeline setup.
 - Operational Excellence: Monitoring, logging, and alerting setup.
 - Documentation: Clarity and completeness of the documentation.
 - Containerization: Best practices and optimizations used in the Docker setup.

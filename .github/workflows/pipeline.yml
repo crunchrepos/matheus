@@ -8,7 +8,30 @@ on:
       - develop
 
 jobs:
-  call-reusable-workflow:
+  testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: cd typeorm-express-typescript && npm install
+
+      - name: Lint code
+        run: cd typeorm-express-typescript && npm run lint
+
+      - name: Run tests
+        run: cd typeorm-express-typescript && npm test
+
+  deploy:
+    needs: testing
     uses: ./.github/workflows/reusable_terraform_pipeline.yml
     with:
       aws-ecr-repository-name: boilerplate-dev-api
