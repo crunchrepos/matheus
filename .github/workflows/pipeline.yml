@@ -13,4 +13,5 @@ jobs:
     with:
       aws-ecr-repository-name: boilerplate-${{ github.ref_name }}-api
       branch: ${{ github.ref_name }}
+      application_path: ../../typeorm-express-typescript
     secrets: inherit

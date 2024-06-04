@@ -10,6 +10,9 @@ on:
       aws-ecr-repository-name:
         required: true
         type: string
+      application_path:
+        required: true
+        type: string
 
 
 jobs:
@@ -77,8 +80,9 @@ jobs:
           REPOSITORY: ${{ inputs.aws-ecr-repository-name }}
           IMAGE_TAG: ${{ github.sha }}
           NODE_ENV: ${{ env.NODE_ENV }}
+          APP_PATH: ${{ inputs.application_path }}
         run: |
-          cd ../../typeorm-express-typescript
+          cd $APP_PATH
             docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --build-arg NODE_ENV=${NODE_ENV} .
             docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
       
