@@ -23,12 +23,12 @@ Replace these values with your actual username and password
 ```
 export ENVIRONMENT=dev
 export DB_PASSWORD="white"
-export APP_NAME=boilerplate
+export APP_NAME=boilerplate-api
 export JWT_SECRET="dfdhhf8gh523reh6qedn37dferpoawdn381j"
 
 aws ssm put-parameter --name "/$ENVIRONMENT/crunch/db/password" --value "$DB_PASSWORD" --type "SecureString" --overwrite
 aws ssm put-parameter --name "/$ENVIRONMENT/crunch/app/jwt_secret" --value "$JWT_SECRET" --type "SecureString" --overwrite
-aws ecr create-repository --repository-name $APP_NAME-$ENVIRONMENT-api --image-tag-mutability MUTABLE
+aws ecr create-repository --repository-name $APP_NAME-$ENVIRONMENT --image-tag-mutability MUTABLE
 
 ```
 
