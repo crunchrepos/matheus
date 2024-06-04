@@ -41,6 +41,14 @@ aws ecr create-repository --repository-name $APP_NAME-$ENVIRONMENT --image-tag-m
 ![](./docs/terraform-pipeline.png)
 > **Note:**  Only `develop` and `main` branches deploy to AWS.
 
+## Automatic destruction of the development environment
+To destroy the development environment, simply delete the develop branch.
+
+An automation will execute the terraform destroy command in the development environment.
+
+> NOTE: To destroy the production environment read the F.A.Q section.
+
+
 
 # Solution
 
