@@ -26,9 +26,12 @@ terragrunt run-all init
 terragrunt run-all destroy
 ```
 
-## How to delete the ECR
+## How to delete the ECR (PROD/DEV)
+ECR for security is the unique resource created manually so is necessary run these commands to delete.
 ```
-export ENVIRONMENT=dev
-export APP_NAME=boilerplate
-aws ecr delete-repository --repository-name $APP_NAME-$ENVIRONMENT-api --force 
+export AWS_REGION=us-east-2
+export ENVIRONMENT=prod
+export APP_NAME=boilerplate-api
+
+aws ecr delete-repository --repository-name $APP_NAME-$ENVIRONMENT --force 
 ```
