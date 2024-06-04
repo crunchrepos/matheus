@@ -1,18 +1,12 @@
-FROM node:16.14.0-alpine AS builder
-
+FROM node:16-alpine AS builder  
 WORKDIR /app
+COPY package*.json ./           
+RUN npm ci 
+COPY . .                        
+RUN npm run build                
 
-COPY package.json .
-COPY package-lock.json .
-
-RUN npm install
-
-COPY . .
-
-RUN npm run build
-
-FROM scratch
-
-COPY --from=builder /app/dist /app
+FROM node:16-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app /app   
 EXPOSE 4000
 CMD [ "npm", "start" ]
