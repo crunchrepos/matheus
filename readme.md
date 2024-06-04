@@ -21,8 +21,9 @@ Replace these values with your actual username and password
 > **Note:** you must create the ssm entry manualy.
 > For practical purposes only I'm using the same values recomended by the boilerplate repository
 ```
+export AWS_REGION=us-east-1
 export ENVIRONMENT=dev
-export DB_PASSWORD="white"
+export DB_PASSWORD="whitewhite"
 export APP_NAME=boilerplate-api
 export JWT_SECRET="dfdhhf8gh523reh6qedn37dferpoawdn381j"
 
