@@ -13,22 +13,23 @@ jobs:
     strategy:
       matrix:
         node-version: [16]
+    working-directory: typeorm-express-typescript
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: cd typeorm-express-typescript && npm install
+        run: npm install
 
       - name: Lint code
-        run: cd typeorm-express-typescript && npm run lint
+        run: npm run lint
 
       - name: Run tests
-        run: cd typeorm-express-typescript && npm test
+        run: npm test
 
   deploy:
     needs: testing
