@@ -195,3 +195,11 @@ variable "ecs_fargate_memory" {
   description = "The memory for the ECS task definition"
   type        = string
 }
+
+
+
+# ------------> ALARMS <------------
+variable "alarm_email_subscription" {
+  description = "The email address to subscribe to the alarm notifications"
+  type        = string
+}

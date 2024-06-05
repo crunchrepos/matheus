@@ -36,7 +36,8 @@ resource "aws_iam_policy" "ecs_task_execution_policy" {
         "ssm:*",
         "sts:AssumeRole",
         "application-autoscaling:*",
-        "ecr:*"
+        "ecr:*",
+        "sns:*"
       ]
       Resource = "*"
     }]
